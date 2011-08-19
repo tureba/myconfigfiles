@@ -1,0 +1,19 @@
+[submodule "bundle/pathogen"]
+	path = bundle/pathogen
+	url = git://github.com/vim-scripts/pathogen.vim.git
+[submodule "bundle/securemodelines"]
+	path = bundle/securemodelines
+	url = git://github.com/vim-scripts/securemodelines.git
+# snipmante depends on tlib and mw-utils
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git://github.com/garbas/vim-snipmate.git
+[submodule "bundle/mw-utils"]
+	path = bundle/mw-utils
+	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "bundle/snippets"]
+	path = bundle/snippets
+	url = git://github.com/honza/snipmate-snippets.git
+[submodule "bundle/tlib"]
+	path = bundle/tlib
+	url = git://github.com/tomtom/tlib_vim.git

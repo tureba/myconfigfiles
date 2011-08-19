@@ -1,0 +1,32 @@
+#
+# Tureba's base gitconfig
+#
+#   To use it, link ~/.gitconfig to this file, which
+#   should be located in ~/.config/vim/gitconfig
+#
+# who: Arthur Nascimento <tureba@gmail.com>
+# where: github.com/tureba/myconfigfiles
+#
+
+[user]
+	email = tureba@gmail.com
+	name = Arthur Nascimento
+[core]
+	editor = vim
+	whitespace = trailing-space,space-before-tab,cr-at-eol
+	sharedRepository = group
+	safecrlf = true
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	grep = auto
+	status = auto
+	ui = auto
+[apply]
+	whitespace = fix
+[diff]
+	renames = copy
+[i18n]
+	commitEncoding = utf-8
+	logOutputEncoding = utf-8
