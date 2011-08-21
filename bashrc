@@ -15,6 +15,8 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # audio/visual bell be gone
 xset -b &>/dev/null
 
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+
 export LC_ALL=C
 export LANG=pt_BR.UTF-8
 export LANGUAGE=pt_BR.UTF-8
