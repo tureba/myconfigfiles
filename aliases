@@ -1,0 +1,13 @@
+#
+# Tureba's aliases
+#
+#   To use it, source this from the shell resource files.
+#
+# who: Arthur Nascimento <tureba@gmail.com>
+# where: github.com/tureba/myconfigfiles
+#
+
+alias ks='ls --color=auto'
+alias sl='ls --color=auto'
+alias ls='ls --color=auto'
+
