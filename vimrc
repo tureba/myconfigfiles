@@ -27,6 +27,8 @@ set runtimepath+=/usr/share/vim/current
 " Ubuntu/Debian
 set runtimepath+=/usr/share/vim/addons
 
+set tags=~/.tags,.tags
+
 " Load plugins managed by pathogen
 call pathogen#infect()
 
