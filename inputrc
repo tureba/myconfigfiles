@@ -10,6 +10,7 @@
 
 # the most important option
 set editing-mode vi
+set keymap vi
 
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
