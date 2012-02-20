@@ -49,4 +49,4 @@ normal="%{[0m%}"
 # TODO: I must fiddle with the prompt a little bit. I am still not happy with it.
 
 PROMPT="${white}[$yellow%D{%H:%M:%S}$white] $white($green%n$white@$cyan%m$white)$blue%#$normal "
-RPROMPT="$white($green%~$white) $red$?$normal"
+RPROMPT="$white($green%~$white) $red%?$normal"
