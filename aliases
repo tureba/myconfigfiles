@@ -11,3 +11,5 @@ alias ks='ls --color=auto'
 alias sl='ls --color=auto'
 alias ls='ls --color=auto'
 
+alias makes='make -s'
+
