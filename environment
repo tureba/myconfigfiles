@@ -49,6 +49,6 @@ fi
 ssh-add -l &>/dev/null || ssh-add &>/dev/null
 
 # stale tags file gets remade (once a week should be a good refresh rate)
-find ~/.tags -mtime 7 -delete
+find ~/.tags -mtime 7 -delete &>/dev/null
 # recache system includes now
 [ -f ~/.tags ] || ctags -R --sort=yes -f ~/.tags /usr/include &>/dev/null &
