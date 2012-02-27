@@ -66,6 +66,8 @@ set showmode
 
 " grava as alterações antes de :make e outros
 set autowrite
+set autowriteall
+set hidden
 set nobackup
 set cindent
 set writeany
@@ -88,10 +90,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Toggle NERDTree plugin
-"map <F2> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+" open NERDTree if no file was specified
+autocmd vimenter * if !argc() | NERDTree | endif
+" close vim if NERDTree is the last buffer and it is being closed
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " NERDTree
-"let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.class$']
 
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
 set pastetoggle=<F3>
@@ -122,8 +128,7 @@ autocmd BufReadPost *
 
 au BufNewFile,BufRead *.pgc,*.pgh	setf esqlc
 
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
+map <F4> :call ToggleHex()<CR>
 
 " helper function to toggle hex mode
 function ToggleHex()
