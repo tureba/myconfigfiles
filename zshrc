@@ -11,7 +11,6 @@
 
 setopt appendhistory autocd correct extendedglob inc_append_history menu_complete null_glob share_history
 unsetopt beep nomatch
-bindkey -v
 
 # general aliases
 source ${0%/*}/aliases
@@ -43,3 +42,36 @@ autoload -U zmv
 zstyle ':completion:*' menu select
 # End of lines added by compinstall
 
+# key bindings: vi mode
+# needs tweaks to be less vi mode and more vim mode
+bindkey -v
+# fix backwards history search
+bindkey -M viins "^r" history-incremental-search-backward
+bindkey -M vicmd "^r" history-incremental-search-backward
+# fix backspace key
+bindkey -M viins "^H" backward-delete-char
+bindkey -M vicmd "^H" backward-delete-char
+bindkey -M viins "^?" backward-delete-char
+bindkey -M vicmd "^?" backward-delete-char
+# fix insert key
+bindkey -M viins "^[[2~" overwrite-mode
+bindkey -M vicmd "^[[2~" overwrite-mode
+# fix delete key
+bindkey -M viins "^[[3~" delete-char
+bindkey -M vicmd "^[[3~" delete-char
+# fix arrow keys
+bindkey -M viins "^[[A" up-line-or-history
+bindkey -M vicmd "^[[A" up-line-or-history
+bindkey -M viins "^[[B" down-line-or-history
+bindkey -M vicmd "^[[B" down-line-or-history
+bindkey -M viins "^[[C" forward-char
+bindkey -M vicmd "^[[C" forward-char
+bindkey -M viins "^[[D" backward-char
+bindkey -M vicmd "^[[D" backward-char
+# line movements in commnad mode (needs home and end)
+bindkey -M vicmd "0" beginning-of-line
+bindkey -M vicmd "$" end-of-line
+# line movements in insert mode
+bindkey -M viins "^[[7~" beginning-of-line # home
+bindkey -M viins "^[[8~" end-of-line # end
+# ...still needs a lot of work...
