@@ -26,3 +26,6 @@
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "netrw"]
+	path = bundle/netrw
+	url = git://github.com/vim-scripts/netrw.vim.git
