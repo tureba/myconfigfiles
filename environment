@@ -38,7 +38,7 @@ function start_agent {
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
 	. "${SSH_ENV}" > /dev/null
-	ps -p ${SSH_AGENT_PID} -ef | grep -e 'ssh-agent$' > /dev/null || {
+	ps -p ${SSH_AGENT_PID} | grep -e 'ssh-agent$' > /dev/null || {
 		start_agent;
 	}
 else
