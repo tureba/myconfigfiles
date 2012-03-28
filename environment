@@ -18,9 +18,12 @@ export GREP_OPTIONS='--color=auto'
 export PAGER=less
 export EDITOR=vim
 
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
+# follow the XDG Base and User Directory Specifications
+export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_DIR:-$HOME/.download}
+export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-$HOME}
 
 export INPUTRC=~/.inputrc
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
