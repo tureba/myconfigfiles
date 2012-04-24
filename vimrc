@@ -37,6 +37,11 @@ filetype on
 filetype plugin on
 filetype indent on
 syntax on
+set cindent
+set foldenable
+set foldmethod=syntax
+
+set mouse=a
 
 "codificação padrão: sempre UTF-8
 set termencoding=utf-8
@@ -45,7 +50,7 @@ set fileencoding=utf-8
 set scrolloff=3
 
 "o que o backspace pode deletar
-set bs=indent,eol,start
+set backspace=indent,eol,start
 
 " show match in insert mode
 set showmatch
@@ -63,31 +68,32 @@ set noexpandtab
 
 set ruler
 set showmode
+set showcmd
 
+set hidden
 " grava as alterações antes de :make e outros
 set autowrite
 set autowriteall
-set hidden
+" backup before writing but erase it afterwards
 set nobackup
-set cindent
+set writebackup
 set writeany
 
 " No annoying error noises
 set noerrorbells
 set novisualbell
+set report=0
 
 " Não use modelines, use securemodelines
 set nomodeline
-let g:secure_modelines_verbose = 0
-let g:secure_modelines_modelines = 15
-au VimEnter * call filter(exists("g:secure_modelines_allowed_items") ? g:secure_modelines_allowed_items : [],
-	\ 'v:val != "fdm" && v:val != "foldmethod"')
 
 " Move between splits with CTRL+[hjkl]
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" disable imaps plugin if it exists
+let did_latexSuite_disabled=0
 
 " Toggle NERDTree plugin
 map <F2> :NERDTreeToggle<CR>
