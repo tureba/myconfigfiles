@@ -38,6 +38,8 @@ colors
 # batch renaming, e.g.:
 # zmv '(*).txt' '$1.html'
 autoload -U zmv
+# smv *.txt *.html
+alias smv='noglob zmv -W'
 
 zstyle ':completion:*' menu select
 # End of lines added by compinstall
