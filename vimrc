@@ -43,13 +43,13 @@ set foldmethod=syntax
 
 set mouse=a
 
-"codificação padrão: sempre UTF-8
+" codificação padrão: sempre UTF-8
 set termencoding=utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set scrolloff=3
 
-"o que o backspace pode deletar
+" o que o backspace pode deletar
 set backspace=indent,eol,start
 
 " show match in insert mode
@@ -124,7 +124,7 @@ highlight EndingWhitespace ctermbg=darkgreen guibg=lightgreen
 match EndingWhiteSpace /[ \t\r]\+$/
 
 " remove os espaços do final das linhas
-" autocmd BufWritePre *.cpp,*.pgc,*.h,*.pgh,*.xml :%s/[ \t\r]*$//
+"autocmd BufWritePre *.cpp,*.pgc,*.h,*.pgh,*.xml :%s/[ \t\r]*$//
 
 " retorna o cursor para a última posição no arquivo ao abrí-lo
 autocmd BufReadPost *
