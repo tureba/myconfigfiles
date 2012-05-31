@@ -9,7 +9,7 @@
 # where: github.com/tureba/myconfigfiles
 #
 
-setopt appendhistory autocd correct extendedglob inc_append_history menu_complete null_glob share_history
+setopt appendhistory autocd correct extendedglob inc_append_history menu_complete null_glob
 unsetopt beep nomatch
 
 # general aliases

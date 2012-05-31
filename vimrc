@@ -38,8 +38,8 @@ filetype plugin on
 filetype indent on
 syntax on
 set cindent
-set foldenable
-set foldmethod=syntax
+"set foldenable
+"set foldmethod=syntax
 
 set mouse=a
 
