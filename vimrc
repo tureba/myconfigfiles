@@ -87,6 +87,9 @@ set report=0
 " Não use modelines, use securemodelines
 set nomodeline
 
+" for :X
+set cryptmethod=blowfish
+
 " Move between splits with CTRL+[hjkl]
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
