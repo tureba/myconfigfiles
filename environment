@@ -16,7 +16,6 @@ export LANGUAGE=pt_BR.UTF-8
 
 export EDITOR=vim
 export PAGER=less
-which most &>/dev/null && export PAGER=most
 which htop &>/dev/null && alias top=htop
 
 # less, man, most etc colors
