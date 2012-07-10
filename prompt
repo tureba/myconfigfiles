@@ -1,52 +1,33 @@
-# normal
-black="%{[0;30m%}"
-red="%{[0;31m%}"
-green="%{[0;32m%}"
-yellow="%{[0;33m%}"
-blue="%{[0;34m%}"
-magenta="%{[0;35m%}"
-cyan="%{[0;36m%}"
-white="%{[0;37m%}"
 
-# bold (grey is actually bold black)
-grey="%{[01;30m%}"
-bred="%{[01;31m%}"
-bgreen="%{[01;32m%}"
-byellow="%{[01;33m%}"
-bblue="%{[01;34m%}"
-bmagenta="%{[01;35m%}"
-bcyan="%{[01;36m%}"
-bwhite="%{[01;37m%}"
+setopt prompt_bang prompt_percent prompt_subst
 
-# underscore
-ublack="%{[04;30m%}"
-ugrey="%{[01;04;30m%}"
-ured="%{[04;31m%}"
-ugreen="%{[04;32m%}"
-uyellow="%{[04;33m%}"
-ublue="%{[04;34m%}"
-umagenta="%{[04;35m%}"
-ucyan="%{[04;36m%}"
-uwhite="%{[04;37m%}"
+# commit, repo and branch information
+function prompt_git_info() {
+	# TODO: change colors depending on the index status
+	echo -n "%F{cyan}${$(git symbolic-ref HEAD 2>/dev/null)##*/} $(git rev-parse --short HEAD 2>/dev/null)"
+}
 
-# blinking
-kgrey="%{[01;05;30m%}"
-kred="%{[05;31m%}"
-kgreen="%{[05;32m%}"
-kyellow="%{[05;33m%}"
-kblue="%{[05;34m%}"
-kmagenta="%{[05;35m%}"
-kcyan="%{[05;36m%}"
-kwhite="%{[05;37m%}"
+# user@hostname will only be displayed on remote shells
+function prompt_host() {
+	[ -z $SSH_TTY ] && return
+	echo -n "%F{white}(%F{green}%n%F{white}@$%F{cyan}%m%F{white})"
+}
 
-normal="%{[0m%}"
+# (git info pwd) on rprompt
+function prompt_cwd_info() {
+	[[ ! "${PWD/#$HOME/~}" =~ '^~/?$' ]]
+	local h=$?
+	git branch &>/dev/null
+	local g=$?
+	[[ ($g -ne 0) && ($h -ne 0) ]] && return
 
-# example of background colour
-# foreground white = 37
-# background red = 41
-# fgwhitebgred="%{[0;37;41m%}"
+	echo -n "%F{white}("
+	[[ ($g -eq 0) ]] && echo -n "$(prompt_git_info)"
+	[[ ($g -eq 0) && (h -eq 0) ]] && echo -n " "
+	[[ ($h -eq 0) ]] && echo -n "%F{green}%30<..<%~"
+	echo -n "%F{white})"
+}
 
-# TODO: I must fiddle with the prompt a little bit. I am still not happy with it.
+PROMPT='%F{white}[%F{yellow}%D{%H:%M:%S}/%h%F{white}]%(?. .%F{red}%?)$(prompt_host)%F{blue}%#%F{default} '
 
-PROMPT="${white}[$yellow%D{%H:%M:%S}$white] $white($green%n$white@$cyan%m$white)$blue%#$normal "
-RPROMPT="$white($green%~$white) $red%?$normal"
+RPROMPT='$(prompt_cwd_info)'
