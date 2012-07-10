@@ -10,7 +10,7 @@ function prompt_git_info() {
 # user@hostname will only be displayed on remote shells
 function prompt_host() {
 	[ -z $SSH_TTY ] && return
-	echo -n "%F{white}(%F{green}%n%F{white}@$%F{cyan}%m%F{white})"
+	echo -n "%F{white}(%F{green}%n%F{white}@%F{cyan}%m%F{white})"
 }
 
 # (git info pwd) on rprompt
