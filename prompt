@@ -1,5 +1,5 @@
 
-setopt prompt_bang prompt_percent prompt_subst
+setopt prompt_percent prompt_subst
 
 # commit, repo and branch information
 function prompt_git_info() {
