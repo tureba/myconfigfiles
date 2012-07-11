@@ -84,7 +84,7 @@ set noerrorbells
 set novisualbell
 set report=0
 
-" Não use modelines, use securemodelines
+" Don't use modelines, use securemodelines
 set nomodeline
 
 " for :X
