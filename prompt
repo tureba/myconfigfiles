@@ -28,6 +28,6 @@ function prompt_cwd_info() {
 	echo -n "%F{white})"
 }
 
-PROMPT='%F{white}[%F{yellow}%D{%H:%M:%S}/%h%F{white}]%(?. .%F{red}%?)$(prompt_host)%F{blue}%#%F{default} '
+PROMPT='%F{white}[%F{yellow}%D{%H:%M:%S}/%h%F{white}]%(?. .%F{red}%?)$(prompt_host)%F{blue}%#%F{default} '
 
 RPROMPT='$(prompt_cwd_info)'
