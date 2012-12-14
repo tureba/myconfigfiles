@@ -33,6 +33,7 @@ export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
+export TERM=${TERM:-linux}
 
 # follow the XDG Base and User Directory Specifications
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
