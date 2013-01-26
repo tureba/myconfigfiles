@@ -32,3 +32,6 @@
 	logOutputEncoding = utf-8
 [push]
 	default = simple
+[alias]
+	statsu = status
+	puhs = push
