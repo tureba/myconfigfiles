@@ -135,7 +135,10 @@ autocmd BufReadPost *
 	\		exe "normal g`\"" |
 	\	endif
 
+" setf sets the filetype *if* it was not set yet
 au BufNewFile,BufRead *.pgc,*.pgh	setf esqlc
+" setlocal filetype forces the file type when default detection fails
+au BufNewFile,BufRead *.md	setlocal filetype=markdown
 
 map <F4> :call ToggleHex()<CR>
 
