@@ -41,6 +41,8 @@ set cindent
 "set foldenable
 "set foldmethod=syntax
 
+set wildignore+=*.o,*.so,*.d
+
 set mouse=a
 
 " codificação padrão: sempre UTF-8
@@ -106,7 +108,10 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " NERDTree
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.class$']
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.d$', '\.class$']
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
 
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
 set pastetoggle=<F3>
@@ -139,6 +144,7 @@ autocmd BufReadPost *
 au BufNewFile,BufRead *.pgc,*.pgh	setf esqlc
 " setlocal filetype forces the file type when default detection fails
 au BufNewFile,BufRead *.md	setlocal filetype=markdown
+au BufNewFile,BufRead *.glsl setlocal filetype=c
 
 map <F4> :call ToggleHex()<CR>
 

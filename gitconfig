@@ -33,5 +33,6 @@
 [push]
 	default = simple
 [alias]
-	statsu = status
 	puhs = push
+	statsu = status
+	staus = status
