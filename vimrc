@@ -12,7 +12,7 @@
 set nocompatible
 
 " Make vim respect the XDG base directory spec.
-set directory=$XDG_CACHE_HOME/vim
+set directory=$XDG_CACHE_HOME/vim//
 set backupdir=$XDG_CACHE_HOME/vim
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
