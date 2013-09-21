@@ -31,4 +31,8 @@ function update_window_title() {
 precmd_functions=( update_window_title )
 chpwd_functions=( update_rprompt )
 
+#execute each once on start
+update_window_title
+update_rprompt
+
 # vim: syntax=sh:
