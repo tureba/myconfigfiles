@@ -1,33 +1,34 @@
 
-setopt prompt_percent prompt_subst
-
-# commit, repo and branch information
-function prompt_git_info() {
-	# TODO: change colors depending on the index status
-	echo -n "%F{cyan}${$(git symbolic-ref HEAD 2>/dev/null)##*/} $(git rev-parse --short HEAD 2>/dev/null)"
-}
+setopt prompt_percent
 
 # user@hostname will only be displayed on remote shells
-function prompt_host() {
-	[ -z $SSH_TTY ] && return
-	echo -n "%F{white}(%F{green}%n%F{white}@%F{cyan}%m%F{white})"
-}
+PROMPT_HOST=${SSH_TTY:+'%F{white}(%F{green}%n%F{white}@%F{cyan}%m%F{white})'}
 
 # (git info pwd) on rprompt
-function prompt_cwd_info() {
-	[[ ! "${PWD/#$HOME/~}" =~ '^~/?$' ]]
-	local h=$?
-	git branch &>/dev/null
-	local g=$?
-	[[ ($g -ne 0) && ($h -ne 0) ]] && return
+function update_rprompt() {
+	local PROMPT_CWD_INFO=
+	[[ "${PWD/#$HOME/~}" =~ '^~/?$' ]] || PROMPT_CWD_INFO="%F{green}%30<..<%~"
 
-	echo -n "%F{white}("
-	[[ ($g -eq 0) ]] && echo -n "$(prompt_git_info)"
-	[[ ($g -eq 0) && (h -eq 0) ]] && echo -n " "
-	[[ ($h -eq 0) ]] && echo -n "%F{green}%30<..<%~"
-	echo -n "%F{white})"
+	local PROMPT_GIT_INFO=
+	# TODO: change colors depending on the index status
+	git branch &>/dev/null && PROMPT_GIT_INFO="%F{cyan}${$(git symbolic-ref HEAD 2>/dev/null)##*/} $(git rev-parse --short HEAD 2>/dev/null)"
+
+	RPROMPT=
+	[[ -z "${PROMPT_GIT_INFO}" && -z "${PROMPT_CWD_INFO}" ]] && return
+	[[ ! -z "${PROMPT_GIT_INFO}" && ! -z "${PROMPT_CWD_INFO}" ]] && RPROMPT="${PROMPT_GIT_INFO} ${PROMPT_CWD_INFO}"
+	[[ ! -z "${PROMPT_GIT_INFO}" ]] && RPROMPT="${PROMPT_GIT_INFO}"
+	[[ ! -z "${PROMPT_CWD_INFO}" ]] && RPROMPT="${PROMPT_CWD_INFO}"
+
+	RPROMPT="%F{white}(${RPROMPT}%F{white})%F{default}"
 }
 
-PROMPT='%F{white}[%F{yellow}%D{%H:%M:%S}%F{white}|%F{yellow}%h%F{white}]%(?. .%F{red}%?)$(prompt_host)%F{blue}%#%F{default} '
+PROMPT="%F{white}[%F{yellow}%D{%H:%M:%S}%F{white}|%F{yellow}%h%F{white}]%(?. .%F{red}%?)${PROMPT_HOST}%F{blue}%#%F{default} "
 
-RPROMPT='$(prompt_cwd_info)'
+function update_window_title() {
+	echo -en "\e]1;zsh\a\e]2;${PWD/#$HOME/~}\a"
+}
+
+precmd_functions=( update_window_title )
+chpwd_functions=( update_rprompt )
+
+# vim: syntax=sh:
