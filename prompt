@@ -15,9 +15,9 @@ function update_rprompt() {
 
 	RPROMPT=
 	[[ -z "${PROMPT_GIT_INFO}" && -z "${PROMPT_CWD_INFO}" ]] && return
-	[[ ! -z "${PROMPT_GIT_INFO}" && ! -z "${PROMPT_CWD_INFO}" ]] && RPROMPT="${PROMPT_GIT_INFO} ${PROMPT_CWD_INFO}"
 	[[ ! -z "${PROMPT_GIT_INFO}" ]] && RPROMPT="${PROMPT_GIT_INFO}"
 	[[ ! -z "${PROMPT_CWD_INFO}" ]] && RPROMPT="${PROMPT_CWD_INFO}"
+	[[ ! -z "${PROMPT_GIT_INFO}" && ! -z "${PROMPT_CWD_INFO}" ]] && RPROMPT="${PROMPT_GIT_INFO} ${PROMPT_CWD_INFO}"
 
 	RPROMPT="%F{white}(${RPROMPT}%F{white})%F{default}"
 }
