@@ -90,7 +90,9 @@ set report=0
 set nomodeline
 
 " for :X
-set cryptmethod=blowfish
+if version >= 730
+	set cryptmethod=blowfish
+endif
 
 " Move between splits with CTRL+[hjkl]
 nnoremap <C-h> <C-w>h
