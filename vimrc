@@ -20,7 +20,7 @@ let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 let g:netrw_home="$XDG_CACHE_HOME/vim"
 
 " additional directories for pathogen (distro dependent)
-" Exherbo
+" Exherbo/CentOS
 set runtimepath+=/usr/share/vim/vimfiles
 " OpenSUSE/Fedora
 set runtimepath+=/usr/share/vim/current
