@@ -26,7 +26,7 @@ PROMPT="%F{white}[%F{yellow}%D{%H:%M:%S}%F{white}|%F{yellow}%h%F{white}]%(?. .%F
 
 function update_window_title() {
 	echo -en "\e]1;zsh\a\e]2;${PWD/#$HOME/~}\a"
-	[[ $(fc -l -- -1) =~ '^[[:space:]]*[[:digit:]]+[[:space:]]*git' ]] && update_rprompt
+	[[ $(fc -ln -- -1 2>/dev/null) =~ '^git' ]] && update_rprompt
 }
 
 precmd_functions=( update_window_title )
