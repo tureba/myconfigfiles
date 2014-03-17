@@ -7,11 +7,14 @@
 # where: github.com/tureba/myconfigfiles
 #
 
+# if TERM st and it is not available, fallback to xterm
+[[ $TERM =~ '^st\b' ]] && { infocmp $TERM &>/dev/null || TERM=xterm${TERM#st} }
 # let's try an opportunistic color upgrade whenever possible
-[ $TERM = xterm -a -f /usr/share/terminfo/x/xterm-256color ] && TERM=xterm-256color
+[[ $TERM = xterm ]] && infocmp xterm-256color &>/dev/null && TERM=xterm-256color
 # audio/visual bell be gone
 xset -b &>/dev/null
 
+#TODO: be smarter about my preferred languages and encodings
 export LC_ALL=C
 export LANG=pt_BR.UTF-8
 export LANGUAGE=pt_BR.UTF-8
