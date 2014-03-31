@@ -72,3 +72,7 @@ fi
 . "${SSH_ENV}" &>/dev/null
 ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ecdsa ~/.ssh/id_rsa &>/dev/null
 
+# cd relative to git's project root
+cdg() {
+	cd "$(git rev-parse --show-toplevel)/$1"
+}
