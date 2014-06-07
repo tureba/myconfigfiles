@@ -4,7 +4,6 @@
 [submodule "bundle/securemodelines"]
 	path = bundle/securemodelines
 	url = git://github.com/vim-scripts/securemodelines.git
-# snipmante depends on tlib and mw-utils
 [submodule "bundle/mw-utils"]
 	path = bundle/mw-utils
 	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
@@ -22,7 +21,7 @@
 	url = git://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/netrw"]
 	path = bundle/netrw
-	url = git://github.com/vim-scripts/netrw.vim.git
+	url = git://github.com/eiginn/netrw.git
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
