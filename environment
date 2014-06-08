@@ -10,7 +10,7 @@
 # if TERM st and it is not available, fallback to xterm
 [[ $TERM =~ '^st\b' ]] && { infocmp $TERM &>/dev/null || TERM=xterm${TERM#st} }
 # let's try an opportunistic color upgrade whenever possible
-[[ $TERM = xterm ]] && infocmp xterm-256color &>/dev/null && TERM=xterm-256color
+infocmp $TERM-256color &>/dev/null && TERM=$TERM-256color
 # audio/visual bell be gone
 xset -b &>/dev/null
 
