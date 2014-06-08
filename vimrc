@@ -18,6 +18,7 @@ set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 let g:netrw_home=&backupdir
+let g:netrw_liststyle=3
 
 " additional directories for pathogen (distro dependent)
 " Exherbo/CentOS
@@ -101,16 +102,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " disable imaps plugin if it exists
 let did_latexSuite_disabled=0
-
-" Toggle NERDTree plugin
-map <F2> :NERDTreeToggle<CR>
-" open NERDTree if no file was specified
-autocmd vimenter * if !argc() | NERDTree | endif
-" close vim if NERDTree is the last buffer and it is being closed
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" NERDTree
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.o$', '\.d$', '\.class$']
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
