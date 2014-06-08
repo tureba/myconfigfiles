@@ -1,8 +1,8 @@
 "
 " Tureba's base vimrc
 "
-"   To use it, place the whole repo in ~/.config/vim and source
-"   bashrc from ~/.bashrc
+"   To use it, place the whole repo in ~/.config/vim and resource
+"   the shell
 "
 " who: Arthur Nascimento <tureba@gmail.com>
 " where: github.com/tureba/myconfigfiles
@@ -18,7 +18,7 @@ set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 let g:netrw_home=&backupdir
-let g:netrw_liststyle=3
+let g:netrw_liststyle=4
 
 " additional directories for pathogen (distro dependent)
 " Exherbo/CentOS
@@ -33,7 +33,7 @@ set tags=.tags,~/.tags
 " Load plugins managed by pathogen
 call pathogen#infect()
 
-" coisas dos arquivos
+" general file automagic
 filetype on
 filetype plugin on
 filetype indent on
@@ -46,13 +46,13 @@ set wildignore+=*.o,*.so,*.d
 
 set mouse=a
 
-" codificação padrão: sempre UTF-8
+" default encoding: always UTF-8
 set termencoding=utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set scrolloff=3
 
-" o que o backspace pode deletar
+" what backspace removes
 set backspace=indent,eol,start
 
 " show match in insert mode
@@ -74,7 +74,7 @@ set showmode
 set showcmd
 
 set hidden
-" grava as alterações antes de :make e outros
+" write changes before :make and others
 set autowrite
 set autowriteall
 " backup before writing but erase it afterwards
@@ -112,22 +112,13 @@ set pastetoggle=<F3>
 " Toggle spelling and show it's status
 map <F7> :setlocal spell! spell?<CR>
 
-" snipMate
-let g:snips_author='Arthur Nascimento <tureba@gmail.com>'
-let g:snippets_dir="$XDG_CONFIG_HOME/vim/bundle/snipmate-snippets"
-
-" mostra os espaços antes de um tab
+" always show me the wrong spaces in the files
 highlight BeginningWhitespace ctermbg=darkred guibg=darkred
 2match BeginningWhiteSpace /[ ]\+\ze\t\|\t\zs[ ]\+/
-
-" mostra os espaços no final da linha
 highlight EndingWhitespace ctermbg=darkgreen guibg=lightgreen
 match EndingWhiteSpace /[ \t\r]\+$/
 
-" remove os espaços do final das linhas
-"autocmd BufWritePre *.cpp,*.pgc,*.h,*.pgh,*.xml :%s/[ \t\r]*$//
-
-" retorna o cursor para a última posição no arquivo ao abrí-lo
+" return the cursor to where it was when reopening the file
 autocmd BufReadPost *
 	\	if line("'\"") > 0 && line("'\"") <= line("$") |
 	\		exe "normal g`\"" |
