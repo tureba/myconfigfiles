@@ -100,6 +100,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" in insert mode, arrow keys move between display lines
+inoremap <up> <C-O>gk
+inoremap <down> <C-O>gj
+
 " disable imaps plugin if it exists
 let did_latexSuite_disabled=0
 
