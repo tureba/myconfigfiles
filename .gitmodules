@@ -27,4 +27,4 @@
 	url = git://github.com/tpope/vim-vinegar.git
 [submodule "bundle/airline"]
 	path = bundle/airline
-	url = git@github.com:bling/vim-airline.git
+	url = git://github.com/bling/vim-airline.git
