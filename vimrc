@@ -106,6 +106,10 @@ let did_latexSuite_disabled=0
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
 
+set laststatus=2
+set ttimeoutlen=50
+let g:airline_theme='murmur'
+
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
 set pastetoggle=<F3>
 
