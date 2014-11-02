@@ -51,28 +51,18 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 ### setup the key agent ###
 SSH_ENV="$HOME/.ssh/environment"
-
-function start_agent {
-	echo "Initializing new SSH agent..."
-	ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	echo succeeded
-	chmod 600 "${SSH_ENV}"
-}
-
 # Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-	. "${SSH_ENV}" > /dev/null
-	ps -p ${SSH_AGENT_PID} | grep -e 'ssh-agent$' > /dev/null || {
-		start_agent;
-	}
-else
-	start_agent;
-fi
-
-. "${SSH_ENV}" &>/dev/null
-ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ecdsa ~/.ssh/id_rsa &>/dev/null
+[ -f "${SSH_ENV}" ] && . "${SSH_ENV}" &>/dev/null
+# if the agent is not running, start it
+grep -q ssh-agent /proc/${SSH_AGENT_PID}/cmdline &>/dev/null || {
+	ssh-agent | (umask 077 ; sed /echo/d >"${SSH_ENV}")
+	. "${SSH_ENV}" &>/dev/null
+}
+# add all known keys
+ssh-add -l &>/dev/null || ssh-add 2>/dev/null
+unset SSH_ENV
 
 # cd relative to git's project root
-cdg() {
+function cdg {
 	cd "$(git rev-parse --show-toplevel)/$1"
 }
