@@ -47,33 +47,26 @@ zstyle ':completion:*' menu select
 # key bindings: vi mode
 # needs tweaks to be less vi mode and more vim mode
 bindkey -v
+vibindkey() {
+	bindkey -M vicmd "$1" $2
+	bindkey -M viins "$1" ${3:-$2}
+}
 # fix backwards history search
-bindkey -M viins "^r" history-incremental-search-backward
-bindkey -M vicmd "^r" history-incremental-search-backward
-# fix backspace key
-bindkey -M viins "^H" backward-delete-char
-bindkey -M vicmd "^H" backward-delete-char
-bindkey -M viins "^?" backward-delete-char
-bindkey -M vicmd "^?" backward-delete-char
-# fix insert key
-bindkey -M viins "^[[2~" overwrite-mode
-bindkey -M vicmd "^[[2~" overwrite-mode
-# fix delete key
-bindkey -M viins "^[[3~" delete-char
-bindkey -M vicmd "^[[3~" delete-char
-# fix arrow keys
-bindkey -M viins "^[[A" up-line-or-history
-bindkey -M vicmd "^[[A" up-line-or-history
-bindkey -M viins "^[[B" down-line-or-history
-bindkey -M vicmd "^[[B" down-line-or-history
-bindkey -M viins "^[[C" forward-char
-bindkey -M vicmd "^[[C" forward-char
-bindkey -M viins "^[[D" backward-char
-bindkey -M vicmd "^[[D" backward-char
+vibindkey "^r" history-incremental-search-backward
 # line movements in commnad mode (needs home and end)
 bindkey -M vicmd "0" beginning-of-line
 bindkey -M vicmd "$" end-of-line
-# line movements in insert mode
-bindkey -M viins "^[[7~" beginning-of-line # home
-bindkey -M viins "^[[8~" end-of-line # end
-# ...still needs a lot of work...
+
+autoload zkbd
+[[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+[[ -n ${key[Backspace]} ]] && vibindkey "${key[Backspace]}" backward-delete-char
+[[ -n ${key[Insert]} ]] && vibindkey "${key[Insert]}" vi-insert overwrite-mode
+[[ -n ${key[Home]} ]] && vibindkey "${key[Home]}" beginning-of-line
+[[ -n ${key[PageUp]} ]] && vibindkey "${key[PageUp]}" up-line-or-history
+[[ -n ${key[Delete]} ]] && vibindkey "${key[Delete]}" delete-char
+[[ -n ${key[End]} ]] && vibindkey "${key[End]}" end-of-line
+[[ -n ${key[PageDown]} ]] && vibindkey "${key[PageDown]}" down-line-or-history
+[[ -n ${key[Up]} ]] && vibindkey "${key[Up]}" up-line-or-search
+[[ -n ${key[Left]} ]] && vibindkey "${key[Left]}" backward-char
+[[ -n ${key[Down]} ]] && vibindkey "${key[Down]}" down-line-or-search
+[[ -n ${key[Right]} ]] && vibindkey "${key[Right]}" forward-char
