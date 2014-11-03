@@ -45,7 +45,6 @@ zstyle ':completion:*' menu select
 # End of lines added by compinstall
 
 # key bindings: vi mode
-# needs tweaks to be less vi mode and more vim mode
 bindkey -v
 vibindkey() {
 	bindkey -M vicmd "$1" $2
@@ -53,12 +52,13 @@ vibindkey() {
 }
 # fix backwards history search
 vibindkey "^r" history-incremental-search-backward
-# line movements in commnad mode (needs home and end)
+# line movements in command mode
 bindkey -M vicmd "0" beginning-of-line
 bindkey -M vicmd "$" end-of-line
 
 autoload zkbd
-[[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+[[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] || zkbd
+source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Backspace]} ]] && vibindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && vibindkey "${key[Insert]}" vi-insert overwrite-mode
 [[ -n ${key[Home]} ]] && vibindkey "${key[Home]}" beginning-of-line
