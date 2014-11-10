@@ -15,11 +15,10 @@ set nocompatible
 set directory=$XDG_CACHE_HOME/vim//
 set backupdir=$XDG_CACHE_HOME/vim
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
-let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 let g:netrw_home=&backupdir
 let g:netrw_liststyle=4
 
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 " additional directories for pathogen (distro dependent)
 " Exherbo/CentOS
 set runtimepath+=/usr/share/vim/vimfiles
@@ -70,8 +69,18 @@ set softtabstop=4
 set noexpandtab
 
 set ruler
+
+" always show in which editing mode vim is
 set showmode
+
+" show info on the last/current command
 set showcmd
+
+" always display status lines for each window
+set laststatus=2
+
+" timeouts on mappings and key codes
+set timeout timeoutlen=1500 ttimeoutlen=50
 
 set hidden
 " write changes before :make and others
@@ -82,12 +91,16 @@ set nobackup
 set writebackup
 set writeany
 
-" No annoying error noises
-set noerrorbells
-set novisualbell
+" no annoying error noises
+set noerrorbells novisualbell
+
+" always report the number of lines changed
 set report=0
 
-" Don't use modelines, use securemodelines
+" no double spaces when joining lines
+set nojoinspaces
+
+" don't use modelines, use securemodelines
 set nomodeline
 
 " for :X
@@ -111,8 +124,6 @@ let did_latexSuite_disabled=0
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
 
-set laststatus=2
-set ttimeoutlen=50
 let g:airline_theme='murmur'
 
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
