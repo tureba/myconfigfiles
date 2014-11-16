@@ -11,13 +11,22 @@
 " Forget about vi and set it first as it modifies future behaviour
 set nocompatible
 
-" Make vim respect the XDG base directory spec.
-set directory=$XDG_CACHE_HOME/vim//
-set backupdir=$XDG_CACHE_HOME/vim
+" vim's runtime infos
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+
+" swap files location
+set directory=$XDG_CACHE_HOME/vim//
+
+" backup before writing but erase it afterwards
+set nobackup writebackup backupdir=$XDG_CACHE_HOME/vim
+
+" undo persistance
+set undofile undodir=$XDG_CACHE_HOME/vim
+
 let g:netrw_home=&backupdir
 let g:netrw_liststyle=4
 
+" where to look for resources
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 " additional directories for pathogen (distro dependent)
 " Exherbo/CentOS
@@ -83,12 +92,11 @@ set laststatus=2
 set timeout timeoutlen=1500 ttimeoutlen=50
 
 set hidden
-" write changes before :make and others
-set autowrite
-set autowriteall
-" backup before writing but erase it afterwards
-set nobackup
-set writebackup
+
+" write changes before changing buffers, :make and others
+set autowrite autowriteall
+
+" write any file without the need for a !
 set writeany
 
 " no annoying error noises
