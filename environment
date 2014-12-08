@@ -24,7 +24,6 @@ export PAGER=less
 which htop &>/dev/null && alias top=htop
 
 # less, man, most etc colors
-export GREP_OPTIONS='--color=auto'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
 export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
 export LESS_TERMCAP_me=$(tput sgr0)

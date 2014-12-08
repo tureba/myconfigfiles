@@ -13,3 +13,4 @@ alias ls='ls --color=auto'
 
 alias makes='make -s'
 
+alias grep="grep --color=auto"
