@@ -112,8 +112,12 @@ set nojoinspaces
 set nomodeline
 
 " for :X
-if version >= 730
-	set cryptmethod=blowfish
+" but this probably doesn't work
+" I'll need to set the crypt method manually before :X
+if version >= 740
+	setg cryptmethod=blowfish2
+elseif version >= 730
+	setg cryptmethod=blowfish
 endif
 
 " Move between splits with CTRL+[hjkl]
@@ -134,17 +138,18 @@ let g:ctrlp_working_path_mode = 'ra'
 
 let g:airline_theme='murmur'
 
+" Toggle the sidebar file browser
+map <F2> :Lexplore<CR>
+imap <F2> <C-O><F2>
+
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
 set pastetoggle=<F3>
 
-" Toggle spelling and show it's status
+" Toggle spelling and show its status
 map <F7> :setlocal spell! spell?<CR>
 
-" always show me the wrong spaces in the files
-highlight BeginningWhitespace ctermbg=darkred guibg=darkred
-2match BeginningWhiteSpace /[ ]\+\ze\t\|\t\zs[ ]\+/
-highlight EndingWhitespace ctermbg=darkgreen guibg=lightgreen
-match EndingWhiteSpace /[ \t\r]\+$/
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+map <F5> :setlocal list! list?<CR>
 
 " return the cursor to where it was when reopening the file
 autocmd BufReadPost *
