@@ -11,13 +11,16 @@
 [[ $TERM =~ '^st\b' ]] && { infocmp $TERM &>/dev/null || TERM=xterm${TERM#st} }
 # let's try an opportunistic color upgrade whenever possible
 infocmp $TERM-256color &>/dev/null && TERM=$TERM-256color
-# audio/visual bell be gone
-xset -b &>/dev/null
 
-#TODO: be smarter about my preferred languages and encodings
-export LC_ALL=C
+# LC_ALL would overide all others
+unset LC_ALL
+# preferred language
 export LANG=pt_BR.UTF-8
 export LANGUAGE=pt_BR.UTF-8
+# system messages shouldn't be translated
+export LC_MESSAGES=C
+# prefer YYYY-MM-DD HH:mm (ISO 8601)
+export LC_TIME=en_DK.UTF-8
 
 export EDITOR=vim
 export PAGER=less
