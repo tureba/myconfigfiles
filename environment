@@ -68,3 +68,12 @@ unset SSH_ENV
 function cdg {
 	cd "$(git rev-parse --show-toplevel)/$1"
 }
+
+# send SMS
+function smstocel {
+	m=$(mmcli --list-modems | awk '/ModemManager/{print $1; exit}')
+
+	s=$(mmcli -m ${m:?error no modem} --messaging-create-sms="text='$@',number='${CEL:?error no cell}'" | awk '/ModemManager/{print $1; exit}')
+
+	mmcli -s ${s:?error no sms} --send && mmcli -m $m --messaging-delete-sms=$s
+}
