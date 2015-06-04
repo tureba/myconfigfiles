@@ -20,7 +20,8 @@ export LANGUAGE=pt_BR.UTF-8
 # system messages shouldn't be translated
 export LC_MESSAGES=C
 # prefer YYYY-MM-DD HH:mm (ISO 8601)
-export LC_TIME=en_DK.UTF-8
+# TODO: find a better solution
+#export LC_TIME=en_DK.UTF-8
 
 export EDITOR=vim
 export PAGER=less
