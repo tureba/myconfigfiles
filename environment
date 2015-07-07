@@ -8,7 +8,9 @@
 #
 
 # if TERM st and it is not available, fallback to xterm
-[[ $TERM =~ '^st\b' ]] && { infocmp $TERM &>/dev/null || TERM=xterm${TERM#st} }
+if [[ $TERM =~ '^st\b' ]]; then
+	infocmp $TERM &>/dev/null || TERM=xterm${TERM#st}
+fi
 # let's try an opportunistic color upgrade whenever possible
 infocmp $TERM-256color &>/dev/null && TERM=$TERM-256color
 
@@ -27,20 +29,22 @@ export EDITOR=vim
 export PAGER=less
 which htop &>/dev/null && alias top=htop
 
-# less, man, most etc colors
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
+if [[ $- =~ i ]]; then
+	# less, man, most etc colors
+	export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+	export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+	export LESS_TERMCAP_me=$(tput sgr0)
+	export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+	export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+	export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+	export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+	export LESS_TERMCAP_mr=$(tput rev)
+	export LESS_TERMCAP_mh=$(tput dim)
+	export LESS_TERMCAP_ZN=$(tput ssubm)
+	export LESS_TERMCAP_ZV=$(tput rsubm)
+	export LESS_TERMCAP_ZO=$(tput ssupm)
+	export LESS_TERMCAP_ZW=$(tput rsupm)
+fi
 
 # follow the XDG Base and User Directory Specifications
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
