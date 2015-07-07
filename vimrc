@@ -20,8 +20,10 @@ set directory=$XDG_CACHE_HOME/vim//
 " backup before writing but erase it afterwards
 set nobackup writebackup backupdir=$XDG_CACHE_HOME/vim
 
-" undo persistance
-set undofile undodir=$XDG_CACHE_HOME/vim
+if version >= 730
+	" undo persistance
+	set undofile undodir=$XDG_CACHE_HOME/vim
+endif
 
 let g:netrw_home=&backupdir
 let g:netrw_liststyle=4
