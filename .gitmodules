@@ -1,30 +1,30 @@
 [submodule "bundle/pathogen"]
 	path = bundle/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "bundle/securemodelines"]
 	path = bundle/securemodelines
-	url = git://github.com/vim-scripts/securemodelines.git
+	url = https://github.com/vim-scripts/securemodelines.git
 [submodule "bundle/mw-utils"]
 	path = bundle/mw-utils
-	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule "bundle/tlib"]
 	path = bundle/tlib
-	url = git://github.com/tomtom/tlib_vim.git
+	url = https://github.com/tomtom/tlib_vim.git
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/netrw"]
 	path = bundle/netrw
-	url = git://github.com/eiginn/netrw.git
+	url = https://github.com/eiginn/netrw.git
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/vinegar"]
 	path = bundle/vinegar
-	url = git://github.com/tpope/vim-vinegar.git
+	url = https://github.com/tpope/vim-vinegar.git
 [submodule "bundle/airline"]
 	path = bundle/airline
-	url = git://github.com/bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
