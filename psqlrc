@@ -1,0 +1,15 @@
+\set QUIET 1
+
+-- colorize...
+\set PROMPT1 %n@%/(%M:%>)%x%R%#
+\set PROMPT2 %n@%/(%M:%>)%x%R%#
+
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 10000
+\set HISTCONTROL ignoreboth
+
+\x auto
+
+\set QUIET 0
+
+
