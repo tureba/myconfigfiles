@@ -36,3 +36,6 @@
 	puhs = push
 	statsu = status
 	staus = status
+[rebase]
+	autostash = yes
+	autosquash = yes
