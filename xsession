@@ -20,6 +20,10 @@ xset -b
 
 # Enable zapping (C-A-<Bksp> kills X)
 setxkbmap -option terminate:ctrl_alt_bksp
+# Toggle keyboard layouts when pressing both shift keys
+setxkbmap -option grp:shifts_toggle
+# Use three keyboard layouts: us, us-intl (with deadkeys) and br-abnt2
+setxkbmap us,us,br ,intl,abnt2
 
 # LC_ALL would overide all others
 unset LC_ALL
