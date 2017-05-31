@@ -1,10 +1,12 @@
-# Tureba's xsession settings
+# Tureba's xsession/xinitrc settings
 #
 #  This file is run by the login manager after login
-#  To use it, place it or a link to it in ~/.xsession.
+#  To use it, place it or a link to it in ~/.xsession and/or
+#  ~/.xinitrc.
+#  Roughly, ~/.xsession = ~/.profile + ~/.xinitrc
 #
 #  I'll need to customize it in each machine, so this is
-#  mostly an example to reind me of the model to follow.
+#  mostly an example to remind me of the model to follow.
 #
 # who: Arthur Nascimento <tureba@gmail.com>
 # where: github.com/tureba/myconfigfiles
