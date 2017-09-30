@@ -135,3 +135,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command j4status
 }
+
+# desktop notifications
+exec dunst
