@@ -35,4 +35,7 @@ export LC_MESSAGES=C
 # prefer YYYY-MM-DD HH:mm (ISO 8601)
 export LC_TIME=en_DK.UTF-8
 
+# if we have an external screen connected, set it on top of the notebook screen
+xrandr --listactivemonitors | grep -q VGA1 && xrandr --output VGA1 --above LVDS1
+
 exec /usr/bin/i3
