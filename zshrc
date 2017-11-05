@@ -57,8 +57,8 @@ bindkey -M vicmd "0" beginning-of-line
 bindkey -M vicmd "$" end-of-line
 
 autoload zkbd
-[[ -f "$HOME/.zkbd/$TERM" ]] || zkbd
-source "$HOME/.zkbd/$TERM"
+[[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] || zkbd
+source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Backspace]} ]] && vibindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && vibindkey "${key[Insert]}" vi-insert overwrite-mode
 [[ -n ${key[Home]} ]] && vibindkey "${key[Home]}" beginning-of-line
