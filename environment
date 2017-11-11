@@ -20,9 +20,6 @@ export MANPATH="${HOME}/local/share/man${MANPATH:+:${MANPATH}}"
 
 # LC_ALL would overide all others
 unset LC_ALL
-# preferred language
-export LANG=pt_BR.UTF-8
-export LANGUAGE=pt_BR.UTF-8
 # system messages shouldn't be translated
 export LC_MESSAGES=C
 # prefer YYYY-MM-DD HH:mm (ISO 8601)
