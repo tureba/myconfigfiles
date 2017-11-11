@@ -30,6 +30,9 @@ export EDITOR=vim
 export PAGER=less
 which htop &>/dev/null && alias top=htop
 
+# case insensitive search, squeeze blank lines, long prompt, display raw characters, shift right/left by 1/10th of screen size
+export LESS="-i -s -M -R -# .1"
+
 if [[ $- =~ i ]]; then
 	# less, man, most etc colors
 	export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
