@@ -22,3 +22,5 @@ set expand-tilde on
 set match-hidden-files off
 set page-completions off
 set show-all-if-ambiguous on
+
+set enable-bracketed-paste on
