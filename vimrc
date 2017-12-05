@@ -49,8 +49,7 @@ filetype plugin on
 filetype indent on
 syntax on
 set cindent
-"set foldenable
-"set foldmethod=syntax
+set nofoldenable
 
 set wildignore+=*.o,*.so,*.d
 
