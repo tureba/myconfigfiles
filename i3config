@@ -9,49 +9,64 @@
 
 # i3 config file (v4)
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
-font pango:Terminus
+# is used in the bar {} block below.
+font pango:Hack
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "urxvt +sb -rv -fn xft:Terminus"
+bindsym $mod+Return exec "st"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# dmenu (a program launcher)
+# start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
-# i3-dmenu-desktop only displays applications shipping a .desktop file.
-# It is a wrapper around dmenu, so you need that installed.
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
+# change focus, vi keys
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+# move focused window, vi keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+# slice the screen horizontally
+bindsym $mod+minus split v
+bindsym $mod+Shift+minus split v
 
-# split in vertical orientation
-bindsym $mod+v split v
+# slice the screen vertically
+bindsym $mod+bar split h
+bindsym $mod+Shift+bar split h
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -65,10 +80,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+less focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+greater focus child
 
 # toggle between the current and last workspaces
 workspace_auto_back_and_forth no
@@ -108,24 +123,37 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+	# These bindings trigger as soon as you enter the resize mode
 
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink left 10 px or 10 ppt
-        bindsym Shift+Left  resize grow   left 10 px or 10 ppt
+	# resize with hjkl
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Down        resize shrink down 10 px or 10 ppt
-        bindsym Shift+Down  resize grow   down 10 px or 10 ppt
+	# resize with arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-        bindsym Up          resize shrink up 10 px or 10 ppt
-        bindsym Shift+Up    resize grow   up 10 px or 10 ppt
+	# move with HJKL
+	bindsym Shift+h move left 10 px
+	bindsym Shift+j move down 10 px
+	bindsym Shift+k move up 10 px
+	bindsym Shift+l move right 10 px
 
-        bindsym Right       resize shrink right 10 px or 10 ppt
-        bindsym Shift+Right resize grow   right 10 px or 10 ppt
+	# move wth Shift plus arrow keys
+	bindsym Shift+Left move left 10 px
+	bindsym Shift+Down move down 10 px
+	bindsym Shift+Up move up 10 px
+	bindsym Shift+Right move right 10 px
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	# back to normal: Enter or Escape or the same way you entered
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym r mode "default"
+	bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -133,7 +161,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command j4status
+	status_command j4status
 }
 
 # desktop notifications
