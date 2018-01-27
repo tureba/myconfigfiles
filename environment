@@ -14,9 +14,18 @@ fi
 # let's try an opportunistic color upgrade whenever possible
 infocmp $TERM-256color &>/dev/null && TERM=$TERM-256color
 
-export PATH="${HOME}/local/bin:${HOME}/.local/bin:${PATH}"
-export LD_LIBRARY_PATH="${HOME}/local/lib:${HOME}/.local/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
-export MANPATH="${HOME}/local/share/man${MANPATH:+:${MANPATH}}"
+# prepend paths to variables only when they aren't yet set
+() {
+	while [[ ${#@} -ge 2 ]]; do
+		eval "[[ \$$1 =~ \"(^|:)$2(:|$)\" ]] || export $1=\"$2\${$1:+:\${$1}}\""
+		shift 2
+	done
+} \
+	PATH "${HOME}/local/bin" \
+	PATH "${HOME}/.local/bin" \
+	LD_LIBRARY_PATH "${HOME}/local/lib" \
+	LD_LIBRARY_PATH "${HOME}/.local/lib" \
+	MANPATH "${HOME}/local/share/man"
 
 # LC_ALL would overide all others
 unset LC_ALL
