@@ -34,6 +34,8 @@ export LC_MESSAGES=C
 # prefer YYYY-MM-DD HH:mm (ISO 8601)
 # TODO: find a better solution
 #export LC_TIME=en_DK.UTF-8
+# it's a safe failback nowadays
+export LANG=C.UTF-8
 
 export EDITOR=vim
 export PAGER=less
