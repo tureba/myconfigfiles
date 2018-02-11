@@ -22,7 +22,7 @@ function update_rprompt() {
 PROMPT="%F{white}[%F{yellow}%D{%H:%M:%S}%F{white}|%F{yellow}%h%F{white}]%(?. .%F{red}%?)%F{white}(%F{green}%n%F{white}@%F{cyan}%m%F{white})%F{blue}%#%F{default} "
 
 function update_window_title() {
-	echo -en "\e]1;zsh\a\e]2;${PWD/#$HOME/~}\a"
+	printf "\e]1;zsh\a\e]2;%s\a" "${PWD/#$HOME/~}"
 	[[ $(fc -ln -- -1 2>/dev/null) =~ '^git' ]] && update_rprompt
 }
 
