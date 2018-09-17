@@ -36,6 +36,8 @@ export LC_MESSAGES=C
 export LC_TIME=en_DK.UTF-8
 
 # if we have an external screen connected, set it on top of the notebook screen
-xrandr --listactivemonitors | grep -q VGA1 && xrandr --output VGA1 --above LVDS1
+xrandr --listactivemonitors | grep -q VGA-1 && xrandr --output VGA-1 --above LVDS-1
+
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 exec /usr/bin/i3
