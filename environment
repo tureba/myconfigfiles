@@ -35,7 +35,9 @@ export LC_MESSAGES=C
 # TODO: find a better solution
 #export LC_TIME=en_DK.UTF-8
 # it's a safe failback nowadays
-export LANG=C.UTF-8
+LANG=$(locale -a | grep -e '^C.[uU][tT][fF]-\?8$')
+export LANG=${LANG:-C}
+
 
 export EDITOR=vim
 export PAGER=less
