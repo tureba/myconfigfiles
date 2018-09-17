@@ -26,11 +26,33 @@ function update_window_title() {
 	[[ $(fc -ln -- -1 2>/dev/null) =~ '^git' ]] && update_rprompt
 }
 
-precmd_functions=( update_window_title )
-chpwd_functions=( update_rprompt )
+precmd_functions+=( update_window_title )
+chpwd_functions+=( update_rprompt )
 
 #execute each once on start
 update_window_title
 update_rprompt
+
+enter_pipenv() {
+	setopt localoptions extendedglob
+	local -a pipfile
+	pipfile=(./(../)#Pipfile(NY1:A))
+	if [[ -e $pipfile ]]; then
+
+		venv=$(PIPENV_IGNORE_VIRTUALENVS=1 pipenv --venv)
+		if [[ "$venv" != "$VIRTUAL_ENV" ]]; then
+			source $venv/bin/activate
+			envfile=${pipfile%Pipfile}.env
+			[[ -e $envfile ]] && source $envfile
+		fi
+	else
+		if [[ -n $VIRTUAL_ENV ]]; then
+			deactivate
+		fi
+	fi
+}
+
+# for .zshrc
+#chpwd_functions+=( enter_pipenv )
 
 # vim: syntax=sh:
