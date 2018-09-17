@@ -70,3 +70,25 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Left]} ]] && vibindkey "${key[Left]}" backward-char
 [[ -n ${key[Down]} ]] && vibindkey "${key[Down]}" down-line-or-search
 [[ -n ${key[Right]} ]] && vibindkey "${key[Right]}" forward-char
+
+
+# tmux output logging per cmd
+function tmux_cycle_output {
+	# redirect output of next command to a file
+	tmux pipe-pane -o "cat >>#{d:socket_path}/%F-%T-zsh-$$-$HISTCMD.txt"
+}
+# for .zshrc because I don't always want this enabled
+# if zsh is immediately inside tmux (not a subshell)
+#if [[ -n $TMUX ]] && grep -q '^tmux\b' /proc/$PPID/cmdline; then
+	# different file per command
+#	precmd_functions+=( tmux_cycle_output )
+#fi
+
+# update tmux environment variables after reattachment
+function update_remote_env {
+	eval $(tmux switch-client\; showenv -s)
+}
+# if zsh is immediately inside tmux (not a subshell)
+if [[ -n $TMUX ]] && grep -q '^tmux\b' /proc/$PPID/cmdline; then
+	precmd_functions+=( update_remote_env )
+fi
