@@ -166,3 +166,17 @@ bar {
 
 # desktop notifications
 exec dunst
+
+# disable bell
+exec_always xset -b
+
+# Enable zapping (C-A-<Bksp> kills X)
+exec_always setxkbmap -option terminate:ctrl_alt_bksp
+# Toggle keyboard layouts when pressing both shift keys
+exec_always setxkbmap -option grp:shifts_toggle
+# Use three keyboard layouts: us, us-intl (with deadkeys) and br-abnt2
+exec_always setxkbmap us,us,br ,intl,abnt2
+
+# if we have an external screen connected, set it on top of the notebook screen
+exec_always xrandr --output VGA-1 --above LVDS-1
+exec_always xrandr --output VGA1 --above LVDS1
