@@ -1,0 +1,39 @@
+! XTerm settings
+XTerm*faceName: DejaVu Sans Mono:size=9:antialias=true
+XTerm*pointerColor: white
+XTerm*pointerColorBackground: black
+XTerm*cursorColor: grey
+XTerm*cursorBlink: true
+XTerm*saveLines: 0
+XTerm*foreground: white
+XTerm*background: black
+XTerm*termName: xterm-256color
+XTerm*selectToClipboard: true
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*fullscreen: never
+XTerm*toolBar: false
+
+UXTerm*faceName: DejaVu Sans Mono:size=9:antialias=true
+UXTerm*pointerColor: white
+UXTerm*pointerColorBackground: black
+UXTerm*cursorColor: grey
+UXTerm*cursorBlink: true
+UXTerm*saveLines: 0
+UXTerm*foreground: white
+UXTerm*background: black
+UXTerm*termName: xterm-256color
+UXTerm*selectToClipboard: true
+UXTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+UXTerm*fullscreen: never
+UXTerm*toolBar: false
+
+*locale: true
+?.?.backarrowKey: false
+?.ttyModes: erase ^?
+
+! Xft settings
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
