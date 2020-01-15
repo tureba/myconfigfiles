@@ -25,9 +25,6 @@ if version >= 730
 	set undofile undodir=$XDG_CACHE_HOME/vim
 endif
 
-let g:netrw_home=&backupdir
-let g:netrw_liststyle=4
-
 " where to look for resources
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 " additional directories for pathogen (distro dependent)
@@ -129,18 +126,6 @@ nnoremap <C-l> <C-w>l
 inoremap <up> <C-O>gk
 inoremap <down> <C-O>gj
 
-" disable imaps plugin if it exists
-let did_latexSuite_disabled=0
-
-" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
-
-let g:airline_theme='murmur'
-
-" Toggle the sidebar file browser
-map <F2> :Lexplore<CR>
-imap <F2> <C-O><F2>
-
 " Toggle paste mode (particularly useful to temporarily disable autoindent)
 set pastetoggle=<F3>
 
@@ -168,6 +153,31 @@ au BufNewFile,BufRead *.glsl setlocal filetype=c
 au BufNewFile,BufRead *.exlib setlocal filetype=sh
 au BufNewFile,BufRead *.exheres-0 setlocal filetype=sh
 au BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 st=2 sw=2 et
+
+colorscheme darkblue
+
+
+" PLUGINS
+
+" Load plugins managed by pathogen
+call pathogen#infect()
+
+" latex: disable imaps plugin if it exists
+let did_latexSuite_disabled=0
+
+" ctrlp:
+let g:ctrlp_working_path_mode = 'ra'
+
+" airline:
+let g:airline_theme='murmur'
+
+" netrw: Toggle the sidebar file browser
+let g:netrw_home=&backupdir
+let g:netrw_liststyle=4
+map <F2> :Lexplore<CR>
+imap <F2> <C-O><F2>
+
+" FUNCTIONS
 
 map <F4> :call ToggleHex()<CR>
 
@@ -208,5 +218,3 @@ function ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
-
-colorscheme darkblue
