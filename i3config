@@ -180,3 +180,5 @@ exec_always setxkbmap us,us,br ,intl,abnt2
 # if we have an external screen connected, set it on top of the notebook screen
 exec_always xrandr --output VGA-1 --above LVDS-1
 exec_always xrandr --output VGA1 --above LVDS1
+
+exec_always xsetroot -solid black
