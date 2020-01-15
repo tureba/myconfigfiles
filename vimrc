@@ -147,7 +147,10 @@ imap <F2> <C-O><F2>
 set pastetoggle=<F3>
 
 " Toggle spelling and show its status
-map <F7> :setlocal spell! spell?<CR>
+" To create the vim spell file from myspell files run
+" :mkspell! ~/.vim/spell/pt.utf-8.spl /usr/share/myspell/pt
+noremap <F7> :setlocal spelllang=en spell! spell?<CR>
+noremap <F8> :setlocal spelllang=pt spell! spell?<CR>
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 map <F5> :setlocal list! list?<CR>
