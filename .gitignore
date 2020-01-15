@@ -1,3 +1,4 @@
 # Plugins installed locally per machine will be ignored
 # Plugins to be versioned must go inside /bundle/
 /plugin/
+/spell/
