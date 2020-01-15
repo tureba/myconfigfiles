@@ -160,12 +160,14 @@ autocmd BufReadPost *
 	\	endif
 
 " setf sets the filetype *if* it was not set yet
-au BufNewFile,BufRead *.pgc,*.pgh	setf esqlc
+au BufNewFile,BufRead *.pgc,*.pgh setf esqlc
 " setlocal filetype forces the file type when default detection fails
-au BufNewFile,BufRead *.md	setlocal filetype=markdown
+au BufNewFile,BufRead *.md setlocal filetype=markdown expandtab textwidth=80
+au BufNewFile,BufRead *.wiki setlocal textwidth=80
 au BufNewFile,BufRead *.glsl setlocal filetype=c
 au BufNewFile,BufRead *.exlib setlocal filetype=sh
 au BufNewFile,BufRead *.exheres-0 setlocal filetype=sh
+au BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 st=2 sw=2 et
 
 map <F4> :call ToggleHex()<CR>
 
