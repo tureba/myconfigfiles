@@ -38,10 +38,8 @@ set runtimepath+=/usr/share/vim/current
 " Ubuntu/Debian
 set runtimepath+=/usr/share/vim/addons
 
-set tags=.tags,~/.tags
-
-" Load plugins managed by pathogen
-call pathogen#infect()
+" search path to :find and siblings
+set path+=**
 
 " general file automagic
 filetype on
