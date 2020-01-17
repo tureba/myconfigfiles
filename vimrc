@@ -153,6 +153,7 @@ au BufNewFile,BufRead *.glsl setlocal filetype=c
 au BufNewFile,BufRead *.exlib setlocal filetype=sh
 au BufNewFile,BufRead *.exheres-0 setlocal filetype=sh
 au BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 st=2 sw=2 et
+au BufNewFile,BufRead Vagrantfile setlocal filetype=ruby
 
 colorscheme darkblue
 
