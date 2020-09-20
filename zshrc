@@ -77,18 +77,15 @@ function tmux_cycle_output {
 	# redirect output of next command to a file
 	tmux pipe-pane -o "cat >>#{d:socket_path}/%F-%T-zsh-$$-$HISTCMD.txt"
 }
-# for .zshrc because I don't always want this enabled
-# if zsh is immediately inside tmux (not a subshell)
-#if [[ -n $TMUX ]] && grep -q '^tmux\b' /proc/$PPID/cmdline; then
-	# different file per command
-#	precmd_functions+=( tmux_cycle_output )
-#fi
 
 # update tmux environment variables after reattachment
 function update_remote_env {
 	eval $(tmux switch-client\; showenv -s)
 }
+
 # if zsh is immediately inside tmux (not a subshell)
 if [[ -n $TMUX ]] && grep -q '^tmux\b' /proc/$PPID/cmdline; then
+	# output file and remote env per command
+	precmd_functions+=( tmux_cycle_output )
 	precmd_functions+=( update_remote_env )
 fi
