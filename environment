@@ -11,8 +11,6 @@
 if [[ $TERM =~ '^st\b' ]]; then
 	infocmp $TERM &>/dev/null || TERM=xterm${TERM#st}
 fi
-# let's try an opportunistic color upgrade whenever possible
-infocmp $TERM-256color &>/dev/null && TERM=$TERM-256color
 
 # prepend paths to variables only when they aren't yet set
 () {
