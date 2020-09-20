@@ -27,13 +27,6 @@ setxkbmap us,us,br ,intl,abnt2
 
 # LC_ALL would overide all others
 unset LC_ALL
-# preferred language
-export LANG=pt_BR.UTF-8
-export LANGUAGE=pt_BR.UTF-8
-# system messages shouldn't be translated
-export LC_MESSAGES=C
-# prefer YYYY-MM-DD HH:mm (ISO 8601)
-export LC_TIME=en_DK.UTF-8
 
 # if we have an external screen connected, set it on top of the notebook screen
 xrandr --listactivemonitors | grep -q VGA-1 && xrandr --output VGA-1 --above LVDS-1
