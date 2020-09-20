@@ -160,9 +160,6 @@ colorscheme darkblue
 
 " PLUGINS
 
-" Load plugins managed by pathogen
-call pathogen#infect()
-
 " latex: disable imaps plugin if it exists
 let did_latexSuite_disabled=0
 
@@ -222,3 +219,6 @@ endfunction
 
 let g:vimwiki_list = [{'path': '~/wiki', 'path_html' : '/srv/www/htdocs/', 'auto_export': 1, 'auto_toc': 1, 'template_path': '~/wiki/templates', 'template_default': 'default', 'template_ext': '.html'}]
 let g:vimwiki_html_header_numbering = 4
+
+" Load plugins managed by pathogen
+call pathogen#infect()
