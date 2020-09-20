@@ -167,6 +167,8 @@ bar {
 # desktop notifications
 exec dunst
 
+exec_always xrdb -merge ~/.XResources
+
 # disable bell
 exec_always xset -b
 
