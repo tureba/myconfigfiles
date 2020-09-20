@@ -21,8 +21,8 @@ set directory=$XDG_CACHE_HOME/vim//
 set nobackup writebackup backupdir=$XDG_CACHE_HOME/vim
 
 if version >= 730
-	" undo persistance
-	set undofile undodir=$XDG_CACHE_HOME/vim
+  " undo persistance
+  set undofile undodir=$XDG_CACHE_HOME/vim
 endif
 
 " where to look for resources
@@ -111,9 +111,9 @@ set nomodeline
 " but this probably doesn't work
 " I'll need to set the crypt method manually before :X
 if version >= 740
-	setg cryptmethod=blowfish2
+  setg cryptmethod=blowfish2
 elseif version >= 730
-	setg cryptmethod=blowfish
+  setg cryptmethod=blowfish
 endif
 
 " Move between splits with CTRL+[hjkl]
