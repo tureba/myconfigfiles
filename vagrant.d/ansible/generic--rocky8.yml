@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: create user keys
+    include_tasks: tasks/user-keys.yml
+    loop:
+      - root
+      - vagrant
+    loop_control:
+      loop_var: user
+  - include_tasks: tasks/dnf-proxy.yml
+  - include_tasks: tasks/rpm_keys.yml
+  - name: update all packages
+    ansible.builtin.package:
+      name: '*'
+      state: latest
+  - name: stop firewalld
+    ansible.builtin.service:
+      state: stopped
+      enabled: false
+      name: firewalld

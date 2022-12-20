@@ -1,0 +1,8 @@
+---
+
+- name: dnf proxy to host squid
+  community.general.ini_file:
+    path: /etc/dnf/dnf.conf
+    section: main
+    option: proxy
+    value: 'http://192.168.121.1:3128'

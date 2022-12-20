@@ -1,0 +1,24 @@
+ENV["LC_ALL"] = "C.UTF-8"
+
+class ::Hash
+    def deep_merge(second)
+        merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+        self.merge(second, &merger)
+    end
+end
+
+Vagrant.configure(2) do |config|
+  config.vm.synced_folder ".", "/vagrant", cached: false
+  config.vm.allowed_synced_folder_types = [:virtiofs, :sshfs]
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.memorybacking :source, :type => "memfd"
+    libvirt.memorybacking :access, :mode => "shared"
+    libvirt.driver = 'kvm'
+    #libvirt.memory = 512 # default 512
+    #libvirt.cpus = 1 # default 1
+    libvirt.nested = true
+    #libvirt.cpu_mode = 'host-passthrough'
+    libvirt.management_network_name = 'default' # default 'vagrant-libvirt'
+    #libvirt.machine_virtual_size = 50 # GB
+  end
+end

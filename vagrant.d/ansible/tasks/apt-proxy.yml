@@ -1,0 +1,8 @@
+---
+
+- name: apt proxy to host squid
+  ansible.builtin.copy:
+    dest: /etc/apt/apt.conf.d/00proxy
+    content: |
+      Acquire::http::proxy "http://192.168.121.1:3128";
+      Acquire::https::proxy "http://192.168.121.1:3128";

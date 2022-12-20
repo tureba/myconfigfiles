@@ -1,0 +1,147 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+tpaexec = YAML.load_file("config.yml")
+
+default_box = "generic/alma8"
+default_cpus = 2
+default_memory = 2048
+
+Vagrant.configure("2") do |configure|
+  tpaexec["instances"].each do |theinstance|
+    instance = tpaexec["instance_defaults"].deep_merge(theinstance)
+    configure.vm.define instance["Name"] do |config|
+      hostname = instance["Name"]
+      config.vm.hostname = hostname
+
+      config.vm.box = instance["vars"]["box"] || default_box
+
+      config.vm.synced_folder ".", "/vagrant", disabled: true
+
+      config.vm.network "private_network", ip: instance["ip_address"], auto_config: true
+
+      config.vm.provider "libvirt" do |libvirt|
+        libvirt.cpus = instance["vars"]["cpus"] || default_cpus
+        libvirt.memory = instance["vars"]["memory"] || default_memory
+      end
+
+      config.vm.provision "vm", type: "ansible", run: "once" do |ansible|
+        ansible.playbook = ENV["HOME"] + "/.vagrant.d/ansible/#{config.vm.box.split('/').join('--')}.yml"
+      end
+    end
+  end
+end
+
+# SAMPLE instances for platinum:
+
+#instances:
+#- Name: pg-a-1
+#  backup: pg-a-4
+#  location: a
+#  node: 1
+#  role:
+#  - bdr
+#  ip_address: 192.168.56.101
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-1/libvirt/private_key"
+#- Name: pg-a-2
+#  location: a
+#  node: 2
+#  role:
+#  - bdr
+#  ip_address: 192.168.56.102
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-2/libvirt/private_key"
+#- Name: pg-b-1
+#  location: b
+#  node: 3
+#  role:
+#  - bdr
+#  ip_address: 192.168.56.201
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-1/libvirt/private_key"
+#- Name: pg-b-2
+#  backup: pg-b-4
+#  location: b
+#  node: 4
+#  role:
+#  - bdr
+#  ip_address: 192.168.56.202
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-2/libvirt/private_key"
+#- Name: pg-a-3
+#  location: a
+#  node: 5
+#  role:
+#  - bdr
+#  - readonly
+#  ip_address: 192.168.56.103
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-3/libvirt/private_key"
+#- Name: pg-b-3
+#  location: b
+#  node: 6
+#  role:
+#  - bdr
+#  - readonly
+#  ip_address: 192.168.56.203
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-3/libvirt/private_key"
+#- Name: pg-c-1
+#  location: c
+#  node: 7
+#  role:
+#  - bdr
+#  - witness
+#  ip_address: 192.168.56.10
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-c-1/libvirt/private_key"
+#- Name: pg-a-4
+#  location: a
+#  node: 8
+#  role:
+#  - barman
+#  ip_address: 192.168.56.104
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-4/libvirt/private_key"
+#- Name: pg-b-4
+#  location: b
+#  node: 9
+#  role:
+#  - barman
+#  ip_address: 192.168.56.204
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-4/libvirt/private_key"
+#- Name: pg-a-5
+#  location: a
+#  node: 10
+#  role:
+#  - harp-proxy
+#  ip_address: 192.168.56.105
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-5/libvirt/private_key"
+#- Name: pg-a-6
+#  location: a
+#  node: 11
+#  role:
+#  - harp-proxy
+#  ip_address: 192.168.56.106
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-a-6/libvirt/private_key"
+#- Name: pg-b-5
+#  location: b
+#  node: 12
+#  role:
+#  - harp-proxy
+#  ip_address: 192.168.56.205
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-5/libvirt/private_key"
+#- Name: pg-b-6
+#  location: b
+#  node: 13
+#  role:
+#  - harp-proxy
+#  ip_address: 192.168.56.206
+#  vars:
+#    ansible_ssh_private_key_file: "{{ cluster_dir }}/.vagrant/machines/pg-b-6/libvirt/private_key"

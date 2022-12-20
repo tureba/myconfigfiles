@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: create user keys
+    include_tasks: tasks/user-keys.yml
+    loop:
+      - root
+      - vagrant
+    loop_control:
+      loop_var: user
+  - name: install python3
+    ansible.builtin.package:
+      name: 'python3'
+      state: latest
+  - include_tasks: tasks/yum-proxy.yml
+  - include_tasks: tasks/rpm_keys.yml
+  - name: update all packages
+    ansible.builtin.package:
+      name: '*'
+      state: latest

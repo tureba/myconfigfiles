@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: create user keys
+    include_tasks: tasks/user-keys.yml
+    loop:
+      - root
+      - vagrant
+    loop_control:
+      loop_var: user
+  - include_tasks: tasks/apt-proxy.yml
+  - name: update all packages
+    ansible.builtin.package:
+      name: '*'
+      state: latest

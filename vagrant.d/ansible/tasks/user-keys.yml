@@ -1,0 +1,6 @@
+---
+
+- name: 'create keys for user {{ user }}'
+  ansible.builtin.user:
+    name: '{{ user }}'
+    generate_ssh_key: yes

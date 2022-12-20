@@ -1,0 +1,12 @@
+---
+
+- name: PGDG repo key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG
+
+- name: EDB repo key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://techsupport.enterprisedb.com/api/repository/dl/default/public_key
+

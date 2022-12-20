@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+  tasks:
+    - name: create local user key if it does not exist
+      local_action:
+        module: user
+        name: "{{ lookup('env','LOGNAME') }}"
+        generate_ssh_key: yes
+      run_once: True
+      register: local_user
+
+    - name: allow access from the local host to the vm
+      become: true
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ local_user.ssh_public_key }}"
+
+    - name: remove old vm ip from the local known_hosts
+      local_action:
+        module: known_hosts
+        name: "{{ ip|default(ansible_host) }}"
+        state: absent
+
+    - name: add vm ip to local .ssh/config
+      local_action:
+        module: blockinfile
+        path: "~/.ssh/config"
+        create: yes
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - {{ group }} - {{ ansible_hostname }} -->"
+        block: |
+          Host "{{ ansible_hostname }} {{ ansible_hostname }}.local {{ group }}-{{ ansible_hostname }}"
+          Hostname "{{ ip|default(ansible_host) }}"
+          User root
+          StrictHostKeyChecking accept-new

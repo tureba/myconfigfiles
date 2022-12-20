@@ -1,0 +1,8 @@
+---
+
+- name: yum proxy to host squid
+  ini_file:
+    path: /etc/yum/yum.conf
+    section: main
+    option: proxy
+    value: 'http://192.168.121.1:3128'

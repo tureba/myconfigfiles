@@ -1,0 +1,12 @@
+---
+
+- name: enable RHEL subscription
+  community.general.redhat_subscription:
+    state: present
+    username: "{{ lookup('env', 'RHEL_REPO_LOGIN', default=Undefined) }}"
+    password: "{{ lookup('file', lookup('env', 'RHEL_REPO_CREDENTIALS_FILE')) }}"
+    auto_attach: true
+    syspurpose:
+      usage: "Development/Test"
+      role: "Red Hat Enterprise Linux Server"
+      service_level_agreement: "Self-Support"
