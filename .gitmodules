@@ -22,3 +22,6 @@
 [submodule "vimwiki"]
 	path = config/vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "csv"]
+	path = config/vim/bundle/csv
+	url = https://github.com/chrisbra/csv.vim
