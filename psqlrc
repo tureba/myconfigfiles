@@ -10,6 +10,14 @@
 
 \x auto
 
+\pset border 2
+\pset linestyle unicode
+\pset unicode_border_linestyle double
+\pset unicode_header_linestyle double
+\pset unicode_column_linestyle single
+
+\set gexplain '\\g | curl --silent --data-urlencode is_public=0 --data-urlencode "plan@-" -w "%{redirect_url}\n" https://explain.depesz.com/'
+
 \set QUIET 0
 
 
