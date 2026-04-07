@@ -36,6 +36,8 @@ export LC_MESSAGES=C
 LANG=$(locale -a | grep -e '^C.[uU][tT][fF]-\?8$')
 export LANG=${LANG:-C}
 
+# display first page immediately, instead of a list of pages
+export MAN_POSIXLY_CORRECT=
 
 export EDITOR=vim
 export PAGER=less
