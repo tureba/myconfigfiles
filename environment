@@ -74,12 +74,12 @@ export INPUTRC=~/.inputrc
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 ### setup the key agent ###
-SSH_ENV="$HOME/.ssh/environment"
+SSH_ENV="/run/user/`id -u`/.ssh-environment"
 # Source SSH settings, if applicable
 [ -f "${SSH_ENV}" ] && . "${SSH_ENV}" &>/dev/null
 # if the agent is not running, start it
 grep -q ssh-agent /proc/${SSH_AGENT_PID}/cmdline &>/dev/null || {
-	ssh-agent | (umask 077 ; sed /echo/d >"${SSH_ENV}")
+	ssh-agent -a "/run/user/`id -u`/.ssh-agent" | (umask 077 ; sed /echo/d >"${SSH_ENV}")
 	. "${SSH_ENV}" &>/dev/null
 }
 # add all known keys
