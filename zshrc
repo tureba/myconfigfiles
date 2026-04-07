@@ -22,7 +22,7 @@ source ${0%/*}/prompt
 source ${0%/*}/environment
 
 # zsh-specific environment settings
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
