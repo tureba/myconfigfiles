@@ -26,12 +26,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-# The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
-
-autoload -Uz compinit
-compinit
-
 autoload -U colors
 colors
 
@@ -89,3 +83,26 @@ if [[ -n $TMUX ]] && grep -q '^tmux\b' /proc/$PPID/cmdline; then
 	precmd_functions+=( tmux_cycle_output )
 	precmd_functions+=( update_remote_env )
 fi
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '$HOME/src/myconfigfiles/zshrc'
+
+# completion setup goes before compinit
+cpath=~/.local/share/zsh/completion
+mkdir -p $cpath
+fpath=($cpath $fpath)
+
+() {
+	while [[ ${#@} -ge 1 ]]; do
+		if whence -p $1 >/dev/null && ! [[ -e $cpath/_$1 ]]; then
+			$1 completion zsh >$cpath/_$1
+		fi
+		shift
+	done
+} virter kubectl
+unset cpath
+
+# compinit after setting fpath
+autoload -Uz compinit
+compinit
+
