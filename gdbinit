@@ -19,3 +19,6 @@ set print symbol-filename on
 
 # limit size of output
 set print elements 0
+
+# always use debuginfod
+set debuginfod enabled on
