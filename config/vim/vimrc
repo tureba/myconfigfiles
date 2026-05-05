@@ -35,6 +35,9 @@ set runtimepath+=/usr/share/vim/current
 " Ubuntu/Debian
 set runtimepath+=/usr/share/vim/addons
 
+" project tags, common tags
+set tags=.tags,~/.tags
+
 " search path to :find and siblings
 set path+=**
 
