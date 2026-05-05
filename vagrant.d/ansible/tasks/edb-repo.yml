@@ -1,0 +1,10 @@
+---
+
+- name: download EDB repo 2.0 file
+  ansible.builtin.get_url:
+    url: "{{ 'https://downloads.enterprisedb.com/' + lookup('file', '~/.edbtoken') + '/enterprise/config.rpm.txt?distro=el&codename=' + ansible_facts['distribution_major_version'] }}"
+    dest: /tmp/edb.repo
+
+- name: add EDB repo 2.0
+  ansible.builtin.command:
+    cmd: dnf config-manager --add-repo /tmp/edb.repo

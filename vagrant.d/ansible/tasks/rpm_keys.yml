@@ -3,10 +3,15 @@
 - name: PGDG repo key
   ansible.builtin.rpm_key:
     state: present
-    key: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG
+    key: https://download.postgresql.org/pub/repos/yum/keys/PGDG-RPM-GPG-KEY-RHEL
 
-- name: EDB repo key
+- name: EDB repo 1.0 key
+  tags: never
   ansible.builtin.rpm_key:
     state: present
     key: https://techsupport.enterprisedb.com/api/repository/dl/default/public_key
 
+- name: EDB repo 2.0 key
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ 'https://downloads.enterprisedb.com/' + lookup('file', '~/.edbtoken') + '/enterprise/gpg.E71EB0829F1EF813.key' }}"

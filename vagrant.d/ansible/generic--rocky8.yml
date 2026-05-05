@@ -12,6 +12,7 @@
       loop_var: user
   - include_tasks: tasks/dnf-proxy.yml
   - include_tasks: tasks/rpm_keys.yml
+  - include_tasks: tasks/edb-repo.yml
   - name: update all packages
     ansible.builtin.package:
       name: '*'
@@ -21,3 +22,11 @@
       state: stopped
       enabled: false
       name: firewalld
+  - ansible.builtin.lineinfile:
+      path: '/etc/profile.d/sh.local'
+      line: 'export PAGER=less'
+  - ansible.builtin.blockinfile:
+      path: '/home/vagrant/.bashrc'
+      block: |
+        LANG=C
+        unset ${!LC_*}

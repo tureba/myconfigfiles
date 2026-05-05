@@ -10,15 +10,8 @@
       - vagrant
     loop_control:
       loop_var: user
-  - include_tasks: tasks/dnf-proxy.yml
-  - include_tasks: tasks/rpm_keys.yml
-  - include_tasks: tasks/edb-repo.yml
+  - include_tasks: tasks/apt-proxy.yml
   - name: update all packages
     ansible.builtin.package:
       name: '*'
       state: latest
-  - name: stop firewalld
-    ansible.builtin.service:
-      state: stopped
-      enabled: false
-      name: firewalld

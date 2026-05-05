@@ -20,3 +20,17 @@
     ansible.builtin.package:
       name: '*'
       state: latest
+  - name: stop firewalld
+    ansible.builtin.service:
+      state: stopped
+      enabled: false
+      name: firewalld
+  - ansible.builtin.lineinfile:
+      path: '/etc/profile.d/sh.local'
+      line: 'export PAGER=less'
+  - ansible.builtin.blockinfile:
+      path: '/home/vagrant/.bashrc'
+      block: |
+        LANG=C
+        unset ${!LC_*}
+        export TERM=screen
