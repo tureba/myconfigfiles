@@ -104,3 +104,12 @@ function smstocel {
 
 	mmcli -s ${s:?error no sms} --send && mmcli -m $m --messaging-delete-sms=$s
 }
+
+# We need to list the local ollama models until opencode can autodiscover them (#6231)
+opencode_config_content() {
+	ollama list | awk '
+	BEGIN{print "{\"provider\":{\"ollama\":{\"models\":{"}
+	NR>1{ print "\"" $1 "\": {\"_launch\": true, \"name\": \"" $1 "\"},"}
+	END{print "}}}}"}'
+}
+alias opencode='OPENCODE_CONFIG_CONTENT=$(opencode_config_content) opencode'
