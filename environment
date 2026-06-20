@@ -69,6 +69,11 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_DOWNLOAD_DIR=${XDG_DOWNLOAD_DIR:-$HOME/.download}
 export XDG_DESKTOP_DIR=${XDG_DESKTOP_DIR:-$HOME}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/`id -u`}
+if [[ -d $XDG_RUNTIME_DIR ]]; then
+	export TMPDIR=$XDG_RUNTIME_DIR/tmp
+	mkdir -p $TMPDIR
+fi
 
 export INPUTRC=~/.inputrc
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
